@@ -424,7 +424,7 @@ std::unique_ptr<quic::QuicConnection> RawQuic::CreateConnection(
 
 quic::ParsedQuicVersionVector RawQuic::GetVersions() {
   quic::ParsedQuicVersionVector versions;
-  versions.emplace_back(quic::PROTOCOL_TLS1_3, quic::QUIC_VERSION_99);
+  versions.emplace_back(quic::PROTOCOL_QUIC_CRYPTO, quic::QUIC_VERSION_43);
   return versions;
 }
 

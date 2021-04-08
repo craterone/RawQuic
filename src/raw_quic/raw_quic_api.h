@@ -1,6 +1,6 @@
 /**
  *  @file        raw_quic_api.h
- *  @brief       RawQuic apiÉùÃ÷ÎÄ¼ş.
+ *  @brief       RawQuic apiå£°æ˜æ–‡ä»¶.
  *  @author      sonysuqin
  *  @copyright   sonysuqin
  *  @version     1.0.1
@@ -15,34 +15,38 @@
 extern "C" {
 #endif
 
+
+RAW_QUIC_API void RAW_QUIC_CALL init();
+
+
 /**
- *  @brief  ´´½¨Ò»¸öRawQuic¾ä±ú.
- *  @param  callback        Òì²½»Øµ÷.
- *  @param  opaque          ÉÏ²ã´«µİµÄ²ÎÊı£¬½«ÔÚ»Øµ÷ÖĞ×÷Îª²ÎÊı»Ø´«.
- *  @param  verify          ÊÇ·ñĞ£ÑéÖ¤Êé.
- *  @return RawQuic¾ä±ú.
+ *  @brief  åˆ›å»ºä¸€ä¸ªRawQuicå¥æŸ„.
+ *  @param  callback        å¼‚æ­¥å›è°ƒ.
+ *  @param  opaque          ä¸Šå±‚ä¼ é€’çš„å‚æ•°ï¼Œå°†åœ¨å›è°ƒä¸­ä½œä¸ºå‚æ•°å›ä¼ .
+ *  @param  verify          æ˜¯å¦æ ¡éªŒè¯ä¹¦.
+ *  @return RawQuicå¥æŸ„.
  */
 RAW_QUIC_API RawQuicHandle RAW_QUIC_CALL RawQuicOpen(RawQuicCallbacks callback,
                                                      void* opaque,
                                                      bool verify);
 
 /**
- *  @brief  ¹Ø±ÕÒ»¸öRawQuic¾ä±ú.
- *  @param  handle          RawQuic¾ä±ú.
- *  @return ´íÎóÂë.
+ *  @brief  å…³é—­ä¸€ä¸ªRawQuicå¥æŸ„.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @return é”™è¯¯ç .
  */
 RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicClose(RawQuicHandle handle);
 
 /**
- *  @brief  Ê¹ÓÃRawQuic¾ä±úÁ¬½ÓÒ»¸ö·şÎñ.
- *  @param  handle          RawQuic¾ä±ú.
- *  @param  host            ·şÎñ¶ËÓòÃû£¬×¢ÒâQUIC±ØĞë¼ÓÃÜ£¬ËùÒÔ±ØĞëÓĞÓòÃû¼°Ö¤Êé.
- *  @param  port            ·şÎñ¶Ë¶Ë¿Ú.
- *  @param  port            ·şÎñ¶ËÂ·¾¶.
- *  @param  timeout         ³¬Ê±Ê±¼ä£¬ms.
- *  @note   timeout·Ç0Ê±£¬ÎªÍ¬²½·½·¨£¬»á×èÈûÖ±µ½Á¬½Ó³É¹¦¡¢Ê§°Ü¡¢»òÕß³¬Ê±£¬
- *          µ±timeoutÎª0Ê±£¬ÎªÒì²½·½·¨£¬connect_callback½«±»»Øµ÷.
- *  @return ´íÎóÂë.
+ *  @brief  ä½¿ç”¨RawQuicå¥æŸ„è¿æ¥ä¸€ä¸ªæœåŠ¡.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @param  host            æœåŠ¡ç«¯åŸŸåï¼Œæ³¨æ„QUICå¿…é¡»åŠ å¯†ï¼Œæ‰€ä»¥å¿…é¡»æœ‰åŸŸååŠè¯ä¹¦.
+ *  @param  port            æœåŠ¡ç«¯ç«¯å£.
+ *  @param  port            æœåŠ¡ç«¯è·¯å¾„.
+ *  @param  timeout         è¶…æ—¶æ—¶é—´ï¼Œms.
+ *  @note   timeouté0æ—¶ï¼Œä¸ºåŒæ­¥æ–¹æ³•ï¼Œä¼šé˜»å¡ç›´åˆ°è¿æ¥æˆåŠŸã€å¤±è´¥ã€æˆ–è€…è¶…æ—¶ï¼Œ
+ *          å½“timeoutä¸º0æ—¶ï¼Œä¸ºå¼‚æ­¥æ–¹æ³•ï¼Œconnect_callbackå°†è¢«å›è°ƒ.
+ *  @return é”™è¯¯ç .
  */
 RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicConnect(RawQuicHandle handle,
                                                   const char* host,
@@ -51,28 +55,28 @@ RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicConnect(RawQuicHandle handle,
                                                   int32_t timeout);
 
 /**
- *  @brief  Ê¹ÓÃRawQuic¾ä±ú·¢ËÍÒ»¶ÎÊı¾İ.
- *  @param  handle          RawQuic¾ä±ú.
- *  @param  data            Êı¾İ»º´æµØÖ·.
- *  @param  size            Êı¾İ³¤¶È.
- *  @note   Ö»ÊÇ·Åµ½·¢ËÍ»º³åÇø.
- *  @return ·¢ËÍµÄ×Ö½ÚÊı»òÕß´íÎóÂë.
+ *  @brief  ä½¿ç”¨RawQuicå¥æŸ„å‘é€ä¸€æ®µæ•°æ®.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @param  data            æ•°æ®ç¼“å­˜åœ°å€.
+ *  @param  size            æ•°æ®é•¿åº¦.
+ *  @note   åªæ˜¯æ”¾åˆ°å‘é€ç¼“å†²åŒº.
+ *  @return å‘é€çš„å­—èŠ‚æ•°æˆ–è€…é”™è¯¯ç .
  */
 RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicSend(RawQuicHandle handle,
                                                uint8_t* data,
                                                uint32_t size);
 
 /**
- *  @brief  Ê¹ÓÃRawQuic¾ä±ú½ÓÊÕÒ»¶ÎÊı¾İ.
- *  @param  handle          RawQuic¾ä±ú.
- *  @param  data            Êı¾İ»º´æµØÖ·.
- *  @param  size            Êı¾İ»º´æ³¤¶È.
- *  @param  timeout         ³¬Ê±Ê±¼ä£¬ms.
- *  @note   timeout·Ç0Ê±£¬½«µÈ´ıÖ±µ½ÓĞÊı¾İ¡¢Ê§°Ü¡¢»òÕß³¬Ê±,
- *          timeoutÎª0Ê±£¬Ö»ÊÇ³¢ÊÔ¼ì²é½ÓÊÕ»º³åÇøÊÇ·ñÓĞÊı¾İ£¬
- *          ÓĞÔò·µ»ØÊı¾İ£¬·ñÔò·µ»ØEAGAIN. can_read_callback
- *          »Øµ÷½«»áÍ¨ÖªÓĞÊı¾İ¿É¶Á(±ßÔµ´¥·¢).
- *  @return ½ÓÊÕµÄ×Ö½ÚÊı»òÕß´íÎóÂë.
+ *  @brief  ä½¿ç”¨RawQuicå¥æŸ„æ¥æ”¶ä¸€æ®µæ•°æ®.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @param  data            æ•°æ®ç¼“å­˜åœ°å€.
+ *  @param  size            æ•°æ®ç¼“å­˜é•¿åº¦.
+ *  @param  timeout         è¶…æ—¶æ—¶é—´ï¼Œms.
+ *  @note   timeouté0æ—¶ï¼Œå°†ç­‰å¾…ç›´åˆ°æœ‰æ•°æ®ã€å¤±è´¥ã€æˆ–è€…è¶…æ—¶,
+ *          timeoutä¸º0æ—¶ï¼Œåªæ˜¯å°è¯•æ£€æŸ¥æ¥æ”¶ç¼“å†²åŒºæ˜¯å¦æœ‰æ•°æ®ï¼Œ
+ *          æœ‰åˆ™è¿”å›æ•°æ®ï¼Œå¦åˆ™è¿”å›EAGAIN. can_read_callback
+ *          å›è°ƒå°†ä¼šé€šçŸ¥æœ‰æ•°æ®å¯è¯»(è¾¹ç¼˜è§¦å‘).
+ *  @return æ¥æ”¶çš„å­—èŠ‚æ•°æˆ–è€…é”™è¯¯ç .
  */
 RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicRecv(RawQuicHandle handle,
                                                uint8_t* data,
@@ -81,23 +85,23 @@ RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicRecv(RawQuicHandle handle,
 
 
 /**
- *  @brief  »ñÈ¡½ÓÊÕ»º³åÇøµÄÊı¾İ³¤¶È.
- *  @param  handle          RawQuic¾ä±ú.
- *  @return ½ÓÊÕ»º³åÇøµÄÊı¾İ³¤¶È.
+ *  @brief  è·å–æ¥æ”¶ç¼“å†²åŒºçš„æ•°æ®é•¿åº¦.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @return æ¥æ”¶ç¼“å†²åŒºçš„æ•°æ®é•¿åº¦.
  */
 RAW_QUIC_API int32_t RAW_QUIC_CALL RawQuicGetRecvBufferDataSize(RawQuicHandle handle);
 
 /**
- *  @brief  ÉèÖÃ·¢ËÍ»º³åÇø´óĞ¡.
- *  @param  handle          RawQuic¾ä±ú.
- *  @param  size            »º³åÇø´óĞ¡.
+ *  @brief  è®¾ç½®å‘é€ç¼“å†²åŒºå¤§å°.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @param  size            ç¼“å†²åŒºå¤§å°.
  */
 RAW_QUIC_API void RawQuicSetSendBufferSize(RawQuicHandle handle, uint32_t size);
 
 /**
- *  @brief  »ñÈ¡·¢ËÍ»º³åÇøµÄ´óĞ¡.
- *  @param  handle          RawQuic¾ä±ú.
- *  @return ·¢ËÍ»º³åÇøµÄ´óĞ¡.
+ *  @brief  è·å–å‘é€ç¼“å†²åŒºçš„å¤§å°.
+ *  @param  handle          RawQuicå¥æŸ„.
+ *  @return å‘é€ç¼“å†²åŒºçš„å¤§å°.
  */
 RAW_QUIC_API uint32_t RAW_QUIC_CALL RawQuicGetSendBufferSize(RawQuicHandle handle);
 

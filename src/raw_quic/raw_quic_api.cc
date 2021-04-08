@@ -1,6 +1,17 @@
 #include "net/quic/raw_quic/raw_quic_api.h"
-
 #include "net/quic/raw_quic/raw_quic.h"
+
+#include "base/at_exit.h"
+#include "base/logging.h"
+
+
+std::shared_ptr<base::AtExitManager> exit_manager;
+
+
+void RAW_QUIC_CALL init(){
+  exit_manager.reset(new base::AtExitManager());
+  logging::SetMinLogLevel(logging::LOG_VERBOSE);
+}
 
 RawQuicHandle RAW_QUIC_CALL RawQuicOpen(RawQuicCallbacks callback,
                                         void* opaque,
