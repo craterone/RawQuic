@@ -8,7 +8,8 @@ This function provides ability to replace TCP with QUIC for some app, such as "R
 There's a simple QuicTransport echo server "quic_transport_simple_server" in chromium, and our formal support will be added on [nginx-quic](https://github.com/evansun922/nginx-quic) RTMP module with "RTMP OVER QUIC" function soon.
 
 ## Chromium commit
-4f9161f264b29ca04c466e37ae91497d3420e9cc, after tag 81.0.4008.1.
+
+Chromium 82.0.4061.2
 
 You should build chromium and be able to continue to follow steps.
 
