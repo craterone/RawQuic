@@ -69,3 +69,7 @@ ninja -C out\Debug quic_transport_simple_server
 See sample code test/raw_quic_test.cpp
 
 Enjoy it.
+
+## test
+
+`ln -s /root/RawQuic/src/raw_quic /root/chromium/src/net/quic/raw_quic`

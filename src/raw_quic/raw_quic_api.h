@@ -16,7 +16,7 @@ extern "C" {
 #endif
 
 
-RAW_QUIC_API void RAW_QUIC_CALL init();
+RAW_QUIC_API void RAW_QUIC_CALL initQuic();
 
 
 /**

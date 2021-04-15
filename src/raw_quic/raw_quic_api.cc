@@ -8,7 +8,7 @@
 std::shared_ptr<base::AtExitManager> exit_manager;
 
 
-void RAW_QUIC_CALL init(){
+void RAW_QUIC_CALL initQuic(){
   exit_manager.reset(new base::AtExitManager());
   logging::SetMinLogLevel(logging::LOG_VERBOSE);
 }

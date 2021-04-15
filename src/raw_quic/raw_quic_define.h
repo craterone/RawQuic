@@ -1,6 +1,6 @@
 /**
  *  @file        raw_quic_define.h
- *  @brief       RawQuic apiÊı¾İ½á¹¹ÉùÃ÷ÎÄ¼ş.
+ *  @brief       RawQuic apiæ•°æ®ç»“æ„å£°æ˜æ–‡ä»¶.
  *  @author      sonysuqin
  *  @copyright   sonysuqin
  *  @version     1.0.1
@@ -31,75 +31,76 @@
 #define RAW_QUIC_CALLBACK
 #endif
 
-/// ĞèÒªÖ§³ÖC99.
+/// éœ€è¦æ”¯æŒC99.
 #include <stdint.h>
 #include <stdbool.h>
 
-/// ´íÎóÂë.
+/// é”™è¯¯ç .
 typedef enum RawQuicErrorCode {
-  RAW_QUIC_ERROR_CODE_SUCCESS               = 0,    //!< ³É¹¦.
-  RAW_QUIC_ERROR_CODE_INVALID_PARAM         = -1,   //!< ·Ç·¨²ÎÊı.
-  RAW_QUIC_ERROR_CODE_INVALID_STATE         = -2,   //!< ·Ç·¨×´Ì¬.
-  RAW_QUIC_ERROR_CODE_NULL_POINTER          = -3,   //!< ¿ÕÖ¸Õë.
-  RAW_QUIC_ERROR_CODE_SOCKET_ERROR          = -4,   //!< Socket´íÎó.
-  RAW_QUIC_ERROR_CODE_RESOLVE_FAILED        = -5,   //!< ½âÎöÊ§°Ü.
-  RAW_QUIC_ERROR_CODE_BUFFER_OVERFLOWED     = -6,   //!< »º³åÇøÒç³ö.
-  RAW_QUIC_ERROR_CODE_STREAM_FIN            = -7,   //!< Á÷±»½áÊø.
-  RAW_QUIC_ERROR_CODE_STREAM_RESET          = -8,   //!< Á÷±»ÖØÖÃ.
-  RAW_QUIC_ERROR_CODE_NET_ERROR             = -9,   //!< ÍøÂç´íÎó.
-  RAW_QUIC_ERROR_CODE_QUIC_ERROR            = -10,  //!< QUIC´íÎó.
-  RAW_QUIC_ERROR_CODE_TIMEOUT               = -11,  //!< ³¬Ê±.
-  RAW_QUIC_ERROR_CODE_UNKNOWN               = -12,  //!< Î´Öª´íÎó.
-  RAW_QUIC_ERROR_CODE_INVALID_HANDLE        = -13,  //!< ·Ç·¨¾ä±ú.
+  RAW_QUIC_ERROR_CODE_SUCCESS               = 0,    //!< æˆåŠŸ.
+  RAW_QUIC_ERROR_CODE_INVALID_PARAM         = -1,   //!< éæ³•å‚æ•°.
+  RAW_QUIC_ERROR_CODE_INVALID_STATE         = -2,   //!< éæ³•çŠ¶æ€.
+  RAW_QUIC_ERROR_CODE_NULL_POINTER          = -3,   //!< ç©ºæŒ‡é’ˆ.
+  RAW_QUIC_ERROR_CODE_SOCKET_ERROR          = -4,   //!< Socketé”™è¯¯.
+  RAW_QUIC_ERROR_CODE_RESOLVE_FAILED        = -5,   //!< è§£æå¤±è´¥.
+  RAW_QUIC_ERROR_CODE_BUFFER_OVERFLOWED     = -6,   //!< ç¼“å†²åŒºæº¢å‡º.
+  RAW_QUIC_ERROR_CODE_STREAM_FIN            = -7,   //!< æµè¢«ç»“æŸ.
+  RAW_QUIC_ERROR_CODE_STREAM_RESET          = -8,   //!< æµè¢«é‡ç½®.
+  RAW_QUIC_ERROR_CODE_NET_ERROR             = -9,   //!< ç½‘ç»œé”™è¯¯.
+  RAW_QUIC_ERROR_CODE_QUIC_ERROR            = -10,  //!< QUICé”™è¯¯.
+  RAW_QUIC_ERROR_CODE_TIMEOUT               = -11,  //!< è¶…æ—¶.
+  RAW_QUIC_ERROR_CODE_UNKNOWN               = -12,  //!< æœªçŸ¥é”™è¯¯.
+  RAW_QUIC_ERROR_CODE_INVALID_HANDLE        = -13,  //!< éæ³•å¥æŸ„.
   RAW_QUIC_ERROR_CODE_EAGAIN                = -14,  //!< EAGAIN.
   RAW_QUIC_ERROR_CODE_COUNT
 } RawQuicErrorCode;
 
-/// ´íÎó½á¹¹.
+/// é”™è¯¯ç»“æ„.
 typedef struct RawQuicError {
-  RawQuicErrorCode error;   //!< RawQuicErrorCode´íÎóÂë.
-  int32_t net_error;        //!< ÍøÂç´íÎóÂë.
-  int32_t quic_error;       //!< QUIC´íÎóÂë.
+  RawQuicErrorCode error;   //!< RawQuicErrorCodeé”™è¯¯ç .
+  int32_t net_error;        //!< ç½‘ç»œé”™è¯¯ç .
+  int32_t quic_error;       //!< QUICé”™è¯¯ç .
 } RawQuicError;
 
-/// RawQuic¾ä±úÀàĞÍ.
+/// RawQuicå¥æŸ„ç±»å‹.
 typedef void* RawQuicHandle;
 
 /**
- *  @brief  Á¬½Ó½á¹û»Øµ÷£¬Ö»ÓĞÔÚtimeoutÎª0²Å»Øµ÷.
- *  @param  handle      RawQuic¾ä±ú.
- *  @param  error       ´íÎó½á¹¹.
- *  @param  opaque      Í¸´«²ÎÊı.
+ *  @brief  è¿æ¥ç»“æœå›è°ƒï¼Œåªæœ‰åœ¨timeoutä¸º0æ‰å›è°ƒ.
+ *  @param  handle      RawQuicå¥æŸ„.
+ *  @param  error       é”™è¯¯ç»“æ„.
+ *  @param  opaque      é€ä¼ å‚æ•°.
  */
 typedef void(RAW_QUIC_CALLBACK* ConnectCallback)(RawQuicHandle handle,
                                                  RawQuicError* error,
                                                  void* opaque);
 
 /**
- *  @brief  ´íÎó»Øµ÷£¬·¢Éú´íÎóÊ±»Øµ÷.
- *  @param  handle      RawQuic¾ä±ú.
- *  @param  error       ´íÎó½á¹¹.
- *  @param  opaque      Í¸´«²ÎÊı.
+ *  @brief  é”™è¯¯å›è°ƒï¼Œå‘ç”Ÿé”™è¯¯æ—¶å›è°ƒ.
+ *  @param  handle      RawQuicå¥æŸ„.
+ *  @param  error       é”™è¯¯ç»“æ„.
+ *  @param  opaque      é€ä¼ å‚æ•°.
  */
 typedef void(RAW_QUIC_CALLBACK* ErrorCallback)(RawQuicHandle handle,
                                                RawQuicError* error,
                                                void* opaque);
 
 /**
- *  @brief  ¿É¶Á»Øµ÷.
- *  @param  handle      RawQuic¾ä±ú.
- *  @param  size        ¿É¶ÁÊı¾İ³¤¶È.
- *  @param  opaque      Í¸´«²ÎÊı.
+ *  @brief  å¯è¯»å›è°ƒ.
+ *  @param  handle      RawQuicå¥æŸ„.
+ *  @param  size        å¯è¯»æ•°æ®é•¿åº¦.
+ *  @param  opaque      é€ä¼ å‚æ•°.
  */
 typedef void(RAW_QUIC_CALLBACK* CanReadCallback)(RawQuicHandle handle,
                                                  uint32_t size,
                                                  void* opaque);
 
-/// RawQuic»Øµ÷½á¹¹.
+/// RawQuicå›è°ƒç»“æ„.
 typedef struct RawQuicCallbacks {
-  ConnectCallback connect_callback;     //!< Á¬½Ó½á¹û»Øµ÷.
-  ErrorCallback error_callback;         //!< ´íÎó»Øµ÷.
-  CanReadCallback can_read_callback;    //!< ¿É¶Á»Øµ÷.
+  ConnectCallback connect_callback;     //!< è¿æ¥ç»“æœå›è°ƒ.
+  ErrorCallback error_callback;         //!< é”™è¯¯å›è°ƒ.
+  CanReadCallback can_read_callback;    //!< å¯è¯»å›è°ƒ.
 } RawQuicCallbacks;
 
 #endif  // NET_QUIC_RAW_QUIC_RAW_QUIC_DEFINE_H_
+
