@@ -560,7 +560,7 @@ void RawQuic::OnRstStreamReceived(const quic::QuicRstStreamFrame& frame) {
           quic::QUIC_NO_ERROR, "Stream reset.",
           quic::ConnectionCloseBehavior::SEND_CONNECTION_CLOSE_PACKET);
     }
-    session_ = nullptr;
+    // session_.reset(nullptr);
   }
 
   RawQuicError ret = {RAW_QUIC_ERROR_CODE_STREAM_RESET, 0, 0};
